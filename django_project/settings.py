@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+location = lambda x: os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), x)
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +27,7 @@ SECRET_KEY = config.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +39,21 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'sorl.thumbnail',
+    'paypal.standard.ipn',
+    'catalogo',
+    'carro',
+    'cliente',
+    'cmsweb',
+    'comentario',
+    'contabilidad',
+    'material',
+    'oficina',
+    'pago',
+    'pedido',
+    'ubigeo',
+    'utiles'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,20 +121,20 @@ STATIC_URL = '/static/'
 # Allow Django from all hosts. This snippet is installed from
 # /var/lib/digitalocean/allow_hosts.py
 
-import os
-import netifaces
-
-# Find out what the IP addresses are at run time
-# This is necessary because otherwise Gunicorn will reject the connections
-def ip_addresses():
-    ip_list = []
-    for interface in netifaces.interfaces():
-        addrs = netifaces.ifaddresses(interface)
-        for x in (netifaces.AF_INET, netifaces.AF_INET6):
-            if x in addrs:
-                ip_list.append(addrs[x][0]['addr'])
-    return ip_list
-
-# Discover our IP address
-ALLOWED_HOSTS = ip_addresses()
-
+#import os
+#import netifaces
+#
+## Find out what the IP addresses are at run time
+## This is necessary because otherwise Gunicorn will reject the connections
+#def ip_addresses():
+    #ip_list = []
+    #for interface in netifaces.interfaces():
+        #addrs = netifaces.ifaddresses(interface)
+        #for x in (netifaces.AF_INET, netifaces.AF_INET6):
+            #if x in addrs:
+                #ip_list.append(addrs[x][0]['addr'])
+    #return ip_list
+#
+## Discover our IP address
+#ALLOWED_HOSTS = ip_addresses()
+#
