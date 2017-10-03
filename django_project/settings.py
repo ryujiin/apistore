@@ -121,6 +121,11 @@ STATIC_URL = '/static/'
 # Allow Django from all hosts. This snippet is installed from
 # /var/lib/digitalocean/allow_hosts.py
 
+try:
+    from .local import *
+except ImportError:
+    pass
+
 #import os
 #import netifaces
 #
